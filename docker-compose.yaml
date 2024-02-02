@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  prometheus:
+    hostname: prometheus
+    network_mode: "host"
+    labels:
+      cloud.dfds.dev-build: true
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    restart: always
+    volumes:
+      - ./prometheus:/etc/prometheus
+
+
+  grafana:
+    hostname: grafana
+    network_mode: "host"
+    image: grafana/grafana-oss
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana:/var/lib/grafana
+
